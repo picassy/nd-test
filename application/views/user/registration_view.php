@@ -46,7 +46,7 @@ $(document).ready(function() {
 </script>
 <div class="container">
     <div class="col-lg-8 col-lg-offset-2">
-        <form id="registration-form" method="post" action="register">
+        <form id="registration-form" method="post" action="add">
             <fieldset>
             <div class="form-group">
                 <div class="input-group space-bt">
