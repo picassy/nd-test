@@ -2,39 +2,31 @@
 class User_model extends CI_Model {
 
 	public function isLogin() {
-		if ($this->input->cookie('user_id') != null)
-			return true;
-		else
-			return false;
-	}
-
-	public function login($data) {
-		$query = "SELECT 
-						* 
-					FROM 
-						users 
-					WHERE
-						email = '".$data['email']."' AND `password`='".$data['password']."'
-				";
-		echo $query;
-		$result = $this->db->query($query);
-		//$result -- return array
-		if ($result->num_rows() > 0) {
-			$record = $result->row();
-			print_r($record);
-			$this->input->set_cookie("member_id", $record->user_id, time() + 3600);
-			$this->input->set_cookie("email", $record->email, time() + 3600);
-			return TRUE;
-		} else {
-			return FALSE;
+		if($this->session->userdata('id')){
+		  //user is logged in.
+		  return true;
 		}
+		else{
+		  //user is not logged in.
+		  return false;
+		}
+	}		
+	
+	public function attempt_login($email, $password){
+		// SELECT id, email FROM users WHERE email...
+		$this->db->select('id, email');
+		$query = $this->db->get_where('users',
+					array(
+						'email' => $email,
+						'password' => do_hash($password) //SHA1
+					)
+				);
+		if($query->num_rows() == 0){
+			return false;
+		} else {
+			return $query->row();
+		}	
 	}
-
-	public function logout() {
-		delete_cookie("member_id");
-		delete_cookie("email");
-	}
-
 }
 
 ?>
