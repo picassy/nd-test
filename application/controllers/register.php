@@ -6,6 +6,7 @@
 			$this->load->database();
 			$this->load->helper('form');
 			$this->load->helper('url');
+			$this->load->helper('security');
 			$this->load->model('user/user_model','user_model');
 		}
 
@@ -18,7 +19,7 @@
 
 		public function add(){
 			$data['email'] = $this->input->post('email');
-			$data['password'] = $this->input->post('password');
+			$data['password'] = do_hash($this->input->post('password')); //SHA1
 			if (count($data) != count(array_filter($data))) {
 				//failed to register.
 				$this->index();
