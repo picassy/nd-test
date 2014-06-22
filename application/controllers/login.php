@@ -30,7 +30,7 @@ class Login extends CI_Controller{
 			$this->index('Failed to login, please try again.');
 		}else{
 			//set userdata.
-			$this->session->set_userdata('id', $user_data->id);
+			$this->session->set_userdata('user_id', $user_data->id);
 			$this->session->set_userdata('email', $user_data->email);
 			redirect(base_url());
 		}

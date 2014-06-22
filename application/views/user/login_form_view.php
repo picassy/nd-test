@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="jumbotron">
 		<?php if ($msg) : ?><div style="color:red;"><?=$msg;?><div><?php endif; ?>
-		<form id="login-form" method="post" action="log">
+		<form id="login-form" method="post" action="login/log">
 			<div class="input-group space-bt">
 				<div class="input-group-addon">
 					<span class="glyphicon glyphicon-envelope"></span>

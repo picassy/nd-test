@@ -2,7 +2,7 @@
 class User_model extends CI_Model {
 
 	public function isLogin() {
-		if($this->session->userdata('id')){
+		if($this->session->userdata('user_id')){
 		  //user is logged in.
 		  return true;
 		}
@@ -14,7 +14,7 @@ class User_model extends CI_Model {
 	
 	public function attempt_login($email, $password){
 		// SELECT id, email FROM users WHERE email...
-		$this->db->select('id, email');
+		$this->db->select('user_id, email');
 		$query = $this->db->get_where('users',
 					array(
 						'email' => $email,
