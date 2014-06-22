@@ -7,7 +7,8 @@
 </script>
 <div class="container">
 	<div class="jumbotron">
-		<form id="login-form" method="post" action="login">
+		<?php if ($msg) : ?><div style="color:red;"><?=$msg;?><div><?php endif; ?>
+		<form id="login-form" method="post" action="log">
 			<div class="input-group space-bt">
 				<div class="input-group-addon">
 					<span class="glyphicon glyphicon-envelope"></span>
